@@ -1,4 +1,4 @@
-/**
+/** VERY IMPPPPPPP
  * OCR Strategy options for document processing
  * - `All`: Processes all pages with OCR. (Latency penalty: ~0.5 seconds per page)
  * - `Auto`: Selectively applies OCR only to pages with missing or low-quality text

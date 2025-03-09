@@ -39,7 +39,7 @@ pub async fn doctr_ocr(
     let worker_config = WorkerConfig::from_env()
         .map_err(|e| Box::new(OcrError(e.to_string())) as Box<dyn Error + Send + Sync>)?;
 
-    let general_ocr_url = worker_config.general_ocr_url.unwrap();
+    let general_ocr_url = worker_config.general_ocr_url.unwrap(); //using doctor_ocr from the link
     let url = format!("{}/batch", &general_ocr_url);
 
     let mut form = reqwest::multipart::Form::new();

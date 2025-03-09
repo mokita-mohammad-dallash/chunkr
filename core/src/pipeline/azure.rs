@@ -4,6 +4,9 @@ use crate::models::chunkr::task::Status;
 use crate::utils::services::azure::perform_azure_analysis;
 use rayon::prelude::*;
 
+//there is an option to uze azure pipling document layout anaylsis
+
+
 /// Use Azure document layout analysis to perform segmentation and ocr
 pub async fn process(pipeline: &mut Pipeline) -> Result<(), Box<dyn std::error::Error>> {
     pipeline

@@ -9,7 +9,7 @@ use std::error::Error;
 use std::fs;
 use tempfile::NamedTempFile;
 
-async fn vgt_segmentation_batch(
+async fn vgt_segmentation_batch( //using the ocr hinted segmention
     temp_files: &Vec<&NamedTempFile>,
     ocr_results: Vec<Vec<OCRResult>>,
     page_offset: usize,

@@ -28,6 +28,7 @@ def torch_memory(device, tag=""):
     print('') 
                     
 @META_ARCH_REGISTRY.register()
+#this is the vgt
 class VGT(GeneralizedRCNN):
     
     @configurable

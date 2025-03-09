@@ -250,8 +250,8 @@ async fn process_segment(
     let (html_strategy, markdown_strategy, llm_prompt) = match segment.segment_type.clone() {
         SegmentType::Table | SegmentType::Formula => {
             let config: &LlmGenerationConfig = match segment.segment_type {
-                SegmentType::Table => &configuration.segment_processing.table.as_ref().unwrap(),
-                SegmentType::Formula => &configuration.segment_processing.formula.as_ref().unwrap(),
+                SegmentType::Table => &configuration.segment_processing.table.as_ref().unwrap(), //tables with markdown
+                SegmentType::Formula => &configuration.segment_processing.formula.as_ref().unwrap(), //formuals with latex
                 _ => unreachable!(),
             };
             (&config.html, &config.markdown, &config.llm)

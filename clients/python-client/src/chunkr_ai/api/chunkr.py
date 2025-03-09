@@ -8,7 +8,7 @@ from .misc import prepare_upload_data
 from .task_response import TaskResponse
 from .chunkr_base import ChunkrBase
 
-class Chunkr(ChunkrBase):
+class Chunkr(ChunkrBase): #1
     """Chunkr API client that works in both sync and async contexts"""
     
     @anywhere()
@@ -31,7 +31,7 @@ class Chunkr(ChunkrBase):
     @anywhere()
     @ensure_client()
     @retry_on_429()
-    async def create_task(
+    async def create_task( #2
         self,
         file: Union[str, Path, BinaryIO, Image.Image],
         config: Configuration = None,

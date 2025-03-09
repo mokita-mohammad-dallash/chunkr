@@ -697,13 +697,59 @@ pub struct Configuration {
     pub input_file_url: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[deprecated]
-    pub json_schema: Option<serde_json::Value>,
+    pub json_schema: Option<serde_json::Value>, //WOAHHHHH
     #[serde(skip_serializing_if = "Option::is_none")]
     #[deprecated]
     pub model: Option<Model>,
     pub ocr_strategy: OcrStrategy,
+    /*
+     * OCR Strategy options for document processing
+     * - `All`: Processes all pages with OCR. (Latency penalty: ~0.5 seconds per page)
+     * - `Auto`: Selectively applies OCR only to pages with missing or low-quality text
+    
+    export enum OcrStrategy {
+        All = "All",
+        Auto = "Auto",
+    }
+    */
     pub segment_processing: SegmentProcessing,
+
+    /*
+
+    * Controls the post-processing of each segment type.
+    * Allows you to generate HTML and Markdown from chunkr models for each segment type.
+    * By default, the HTML and Markdown are generated manually using the segmentation information except for `Table` and `Formula`.
+    * You can optionally configure custom LLM prompts and models to generate an additional `llm` field
+    * with LLM-processed content for each segment type.
+
+    export interface SegmentProcessing {
+    Caption: SegmentProcessingConfig;
+    Formula: SegmentProcessingConfig;
+    Footnote: SegmentProcessingConfig;
+    ListItem: SegmentProcessingConfig;
+    Page: SegmentProcessingConfig;
+    PageFooter: SegmentProcessingConfig;
+    PageHeader: SegmentProcessingConfig;
+    Picture: SegmentProcessingConfig;
+    SectionHeader: SegmentProcessingConfig;
+    Table: SegmentProcessingConfig;
+    Text: SegmentProcessingConfig;
+    Title: SegmentProcessingConfig;
+    }
+    */
     pub segmentation_strategy: SegmentationStrategy,
+    /*
+    
+    * Controls the segmentation strategy
+    * - `LayoutAnalysis`: Analyzes pages for layout elements using bounding boxes
+    * - `Page`: Treats each page as a single segment
+    
+    export enum SegmentationStrategy {
+    LayoutAnalysis = "LayoutAnalysis",
+    Page = "Page",
+    }
+
+    */
     #[serde(skip_serializing_if = "Option::is_none")]
     #[deprecated]
     /// The target number of words in each chunk. If 0, each chunk will contain a single segment.

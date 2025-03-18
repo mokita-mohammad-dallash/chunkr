@@ -4,7 +4,7 @@ use core::models::chunkr::pipeline::Pipeline;
 use core::models::chunkr::task::Status;
 use core::models::chunkr::task::TaskPayload;
 use core::models::rrq::queue::QueuePayload;
-
+//this line means the next line is to be compiles when azure is set to true in the config
 #[cfg(feature = "azure")]
 use core::pipeline::azure;
 use core::pipeline::chunking;
@@ -50,6 +50,7 @@ async fn execute_step(
 fn orchestrate_task(
     pipeline: &mut Pipeline,
 ) -> Result<Vec<&'static str>, Box<dyn std::error::Error>> {
+    //pdf to image
     let mut steps = vec!["convert_to_images"];
     #[cfg(feature = "azure")]
     {
@@ -58,6 +59,7 @@ fn orchestrate_task(
             _ => steps.push("segmentation_and_ocr"),
         }
     }
+    //we chose from segmentation_and_ocr or azure
     #[cfg(not(feature = "azure"))]
     {
         steps.push("segmentation_and_ocr");

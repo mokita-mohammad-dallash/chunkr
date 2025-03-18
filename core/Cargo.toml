@@ -4,7 +4,7 @@ version = "0.0.0"
 edition = "2021"
 default-run = "core"
 
-[features]
+[features] ->>> The feature "azure" exists, but it is NOT enabled by default.
 azure = []
 
 [dependencies]
